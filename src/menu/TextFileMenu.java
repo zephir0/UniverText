@@ -2,6 +2,7 @@ package menu;
 
 import model.FileContent;
 import model.FileType;
+import printer.ConsolePrinter;
 
 import java.util.Scanner;
 
@@ -11,49 +12,38 @@ public class TextFileMenu implements FileMenuInterface {
                             FileType fileType,
                             FileContent fileContent) {
         while (true) {
-            System.out.println("1. Display file content.");
-            System.out.println("2. Edit file.");
-            System.out.println("3. Analyze file.");
-            System.out.println("4. Convert to CSV.");
-            System.out.println("5. Return to main menu.");
+            ConsolePrinter.print("""
+                    \n1. Display file content.
+                    2. Edit file.
+                    3. Analyze file.
+                    4. Convert to CSV.
+                    5. Return to main menu.""");
             switch (scanner.nextLine()) {
-                case "1":
-                    fileContent.getLines().forEach(System.out::println);
-                    break;
-                case "2":
-                    editFile(scanner);
-                case "5":
+                case "1" -> fileContent.getLines().forEach(ConsolePrinter::print);
+                case "2" -> editFile(scanner);
+                case "5" -> {
                     return;
-                default:
-                    System.out.println("Invalid option. Please try again.");
+                }
+                default -> ConsolePrinter.printError("Invalid option. Please try again.");
             }
         }
     }
 
     private void editFile(Scanner scanner) {
-        System.out.println("1. Sort alphabetically A-Z.");
-        System.out.println("2. Sort alphabetically Z-A.");
-        System.out.println("3. Replace word.");
-        System.out.println("4. Remove duplicates.");
-        System.out.println("5. Go back.");
+        ConsolePrinter.print("""
+                \n1. Sort alphabetically A-Z.
+                2. Sort alphabetically Z-A.
+                3. Replace word.
+                4. Remove duplicates.
+                5. Go back.""");
         while (true) {
-            System.out.print("Select an option: ");
+            ConsolePrinter.print("Select an option: ");
             switch (scanner.nextLine()) {
-                case "1":
-                    // TODO: 9/24/2023
-                    break;
-                case "2":
-                    break;
-                case "3":
-                    System.out.println("");
-                    break;
-                case "4":
-                    System.out.println("1");
-                    break;
-                case "5":
+                case "1" -> System.out.println();
+                case "5" -> {
                     return;
-                default:
-                    System.out.println("Invalid option. Please try again.");
+                }
+                default -> ConsolePrinter.printError("Invalid option. Please try again.");
             }
         }
     }

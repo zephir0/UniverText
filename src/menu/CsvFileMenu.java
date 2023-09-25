@@ -5,15 +5,16 @@ import editor.CsvFileEditor;
 import io.writer.CsvFileWriter;
 import model.FileContent;
 import model.FileType;
+import printer.ConsolePrinter;
 
 import java.util.Scanner;
 
 public class CsvFileMenu implements FileMenuInterface {
-    private Scanner scanner;
-    private FileContent currentFileContent;
     private final CsvDataAnalyzer dataAnalyzer = new CsvDataAnalyzer();
     private final CsvFileWriter csvFileWriter = new CsvFileWriter();
     private final CsvFileEditor csvFileEditor = new CsvFileEditor();
+    private Scanner scanner;
+    private FileContent currentFileContent;
 
     @Override
     public void displayMenu(Scanner scanner,
@@ -23,42 +24,37 @@ public class CsvFileMenu implements FileMenuInterface {
         this.currentFileContent = currentFileContent;
 
         while (true) {
-            System.out.println("CSV File Menu:");
-            System.out.println("1. Display file content.");
-            System.out.println("2. Edit file.");
-            System.out.println("3. Analyze file.");
-            System.out.println("4. Convert to Text.");
-            System.out.println("5. Return to main menu.");
+            ConsolePrinter.printMenu("""
+                    \n CSV File Menu:
+                    1. Display file content.
+                    2. Edit file.
+                    3. Analyze file.
+                    4. Convert to Text.
+                    5. Return to main menu.""");
+
             switch (scanner.nextLine()) {
-                case "1":
-                    displayContent();
-                    break;
-                case "2":
-                    editFile();
-                    break;
-                case "3":
-                    analyzeFile();
-                    break;
-                case "4":
-                    convertToText();
-                    break;
-                case "5":
-                    System.out.println("Returning to main menu.");
+                case "1" -> displayContent();
+                case "2" -> editFile();
+                case "3" -> analyzeFile();
+                case "4" -> convertToText();
+                case "5" -> {
+                    ConsolePrinter.print("Returning to main menu.");
                     return;
-                default:
-                    System.out.println("Invalid option. Please try again.");
+                }
+                default -> ConsolePrinter.printError("Invalid option. Please try again.");
             }
         }
     }
 
     private void displayContent() {
-        currentFileContent.getLines().forEach(System.out::println);
+        currentFileContent.getLines().forEach(ConsolePrinter::print);
     }
 
     private void editFile() {
-        System.out.println("1. Sort columns.");
-        System.out.println("2. Remove duplicates.");
-        System.out.println("3. Return to CSV menu.");
+        ConsolePrinter.printMenu("""
+                \n1. Sort columns.
+                2. Remove duplicates.
+                3. Return to CSV menu.""");
         String editOption = scanner.nextLine();
 
         if (editOption.equals("1")) {
@@ -74,9 +70,11 @@ public class CsvFileMenu implements FileMenuInterface {
 
 
     private void analyzeFile() {
-        System.out.println("1. Calculate sum from a column.");
-        System.out.println("2. Count repeating words in a column.");
-        System.out.println("3. Return to CSV menu.");
+        ConsolePrinter.printMenu("""
+                \n1. Calculate sum from a column.
+                2. Count repeating words in a column.
+                3. Return to CSV menu.""");
+
         String analyzeOption = scanner.nextLine();
         int columnIndex = promptForColumnIndex();
         if (columnIndex == -1) return;
@@ -88,14 +86,14 @@ public class CsvFileMenu implements FileMenuInterface {
     }
 
     private void convertToText() {
-        System.out.println("CSV converted to Text.");
+        ConsolePrinter.print("CSV converted to Text.");
     }
 
     private int promptForColumnIndex() {
-        System.out.println("Enter the column index:");
+        ConsolePrinter.print("Enter the column index:");
         int columnIndex = Integer.parseInt(scanner.nextLine());
         if (columnIndex < 0 || columnIndex >= getColumnCount()) {
-            System.out.println("Invalid column index.");
+            ConsolePrinter.printError("Invalid column index.");
             return -1;
         }
         return columnIndex;
