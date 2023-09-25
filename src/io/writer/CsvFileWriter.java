@@ -1,6 +1,7 @@
 package io.writer;
 
 import model.FileContent;
+import printer.ConsolePrinter;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -16,9 +17,9 @@ public class CsvFileWriter implements FileWriterInterface {
                 bufferedWriter.write(line);
                 bufferedWriter.newLine();
             }
-            System.out.println("File successfully saved.");
+            ConsolePrinter.print("File successfully saved.");
         } catch (IOException e) {
-            System.out.println("An error occurred while writing to the file: " + e.getMessage());
+            ConsolePrinter.printError("An error occurred while writing to the file: " + e.getMessage());
         }
     }
 }

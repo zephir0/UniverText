@@ -56,11 +56,8 @@ public class CsvFileMenu implements FileMenuInterface {
                 2. Remove duplicates.
                 3. Return to CSV menu.""");
         String editOption = scanner.nextLine();
-
         if (editOption.equals("1")) {
-            int columnIndex = promptForColumnIndex();
-            if (columnIndex == -1) return;
-            csvFileEditor.sortColumn(currentFileContent, columnIndex);
+            csvFileEditor.sortLines(currentFileContent);
             csvFileWriter.writeFile(currentFileContent);
         } else if (editOption.equals("2")) {
             csvFileEditor.removeDuplicates(currentFileContent);
@@ -74,7 +71,6 @@ public class CsvFileMenu implements FileMenuInterface {
                 \n1. Calculate sum from a column.
                 2. Count repeating words in a column.
                 3. Return to CSV menu.""");
-
         String analyzeOption = scanner.nextLine();
         int columnIndex = promptForColumnIndex();
         if (columnIndex == -1) return;

@@ -12,7 +12,7 @@ public class TextFileMenu implements FileMenuInterface {
                             FileType fileType,
                             FileContent fileContent) {
         while (true) {
-            ConsolePrinter.print("""
+            ConsolePrinter.printMenu("""
                     \n1. Display file content.
                     2. Edit file.
                     3. Analyze file.
@@ -30,7 +30,7 @@ public class TextFileMenu implements FileMenuInterface {
     }
 
     private void editFile(Scanner scanner) {
-        ConsolePrinter.print("""
+        ConsolePrinter.printMenu("""
                 \n1. Sort alphabetically A-Z.
                 2. Sort alphabetically Z-A.
                 3. Replace word.
