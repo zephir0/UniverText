@@ -1,9 +1,9 @@
 package com.univertext.editor;
 
 import com.univertext.model.FileContent;
+import com.univertext.printer.ConsolePrinter;
 import org.json.JSONArray;
 import org.json.JSONObject;
-import com.univertext.printer.ConsolePrinter;
 
 import java.util.List;
 

@@ -20,7 +20,6 @@ public class XmlFileMenu extends FileMenu {
 
     @Override
     public void displayMenu(Scanner scanner,
-                            FileType fileType,
                             FileContent fileContent) {
         do {
             ConsolePrinter.printMenuTitle("\nJSON File Menu:");

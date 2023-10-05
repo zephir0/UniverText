@@ -9,7 +9,6 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public abstract class AbstractFileEditor {
-
     public void removeDuplicates(FileContent fileContent) {
         List<String> uniqueLines = fileContent.getLines().stream()
                 .distinct()
@@ -24,9 +23,7 @@ public abstract class AbstractFileEditor {
         if (fileContent.getLines().stream().noneMatch(line -> line.contains(oldWord))) {
             ConsolePrinter.printError("There is no lines with keyword: " + oldWord);
         } else {
-            List<String> updatedLines = fileContent.getLines().stream()
-                    .map(line -> line.replaceAll(oldWord, newWord)).collect(Collectors.toList());
-            fileContent.setLines(updatedLines);
+            fileContent.getLines().replaceAll(line -> line.replaceAll(oldWord, newWord));
             ConsolePrinter.printSuccess("Words replaced.");
         }
     }
@@ -48,9 +45,9 @@ public abstract class AbstractFileEditor {
     }
 
     public void filterLines(FileContent fileContent,
-                            String[] keyword) {
+                            String[] keywords) {
         List<String> filteredLines = fileContent.getLines().stream()
-                .filter(line -> Arrays.stream(keyword).anyMatch(line::contains))
+                .filter(line -> Arrays.stream(keywords).anyMatch(line::contains))
                 .collect(Collectors.toList());
         fileContent.setLines(filteredLines);
         ConsolePrinter.printSuccess("Lines filtered.");
