@@ -2,7 +2,7 @@ package com.univertext;
 
 import com.univertext.io.reader.*;
 import com.univertext.menu.FileMenuInterface;
-import com.univertext.menu.factory.MenuFactory;
+import com.univertext.menu.MenuFactory;
 import com.univertext.model.FileType;
 
 import java.util.Map;

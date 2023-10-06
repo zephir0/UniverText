@@ -1,15 +1,15 @@
-package com.univertext.menu.text_file_menu;
+package com.univertext.menu.text;
 
 import com.univertext.editor.TextFileEditor;
 import com.univertext.io.writer.UniversalFileWriter;
-import com.univertext.menu.FileMenu;
+import com.univertext.menu.FileMenuBase;
 import com.univertext.model.FileContent;
 import com.univertext.model.FileType;
 import com.univertext.printer.ConsolePrinter;
 
 import java.util.Scanner;
 
-public class TextFileEditorMenu extends FileMenu {
+public class TextFileEditorMenu extends FileMenuBase {
     private final TextFileEditor textFileEditor;
     private final UniversalFileWriter universalFileWriter;
 
@@ -20,8 +20,8 @@ public class TextFileEditorMenu extends FileMenu {
     }
 
     @Override
-    public void displayMenu(Scanner scanner,
-                            FileContent fileContent) {
+    public void launchMenu(Scanner scanner,
+                           FileContent fileContent) {
         do {
             ConsolePrinter.printMenuTitle("\nText Edit Menu: ");
             ConsolePrinter.printMenu("""
@@ -61,10 +61,7 @@ public class TextFileEditorMenu extends FileMenu {
                 case "9" -> {
                     return;
                 }
-                default -> {
-                    ConsolePrinter.printError("Invalid option. Please try again.");
-                    continue;
-                }
+                default -> ConsolePrinter.printError("Invalid option. Please try again.");
             }
             handleFileSave(scanner, fileContent, universalFileWriter, FileType.TXT);
         } while (true);

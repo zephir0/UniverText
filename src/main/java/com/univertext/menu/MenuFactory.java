@@ -1,4 +1,4 @@
-package com.univertext.menu.factory;
+package com.univertext.menu;
 
 import com.univertext.analyzer.CsvFileAnalyzer;
 import com.univertext.analyzer.TextFileAnalyzer;
@@ -6,11 +6,14 @@ import com.univertext.converter.*;
 import com.univertext.editor.CsvFileEditor;
 import com.univertext.editor.TextFileEditor;
 import com.univertext.io.writer.UniversalFileWriter;
-import com.univertext.menu.*;
-import com.univertext.menu.csv_file_menu.CsvFileAnalyzerMenu;
-import com.univertext.menu.csv_file_menu.CsvFileEditorMenu;
-import com.univertext.menu.text_file_menu.TextFileAnalyzerMenu;
-import com.univertext.menu.text_file_menu.TextFileEditorMenu;
+import com.univertext.menu.csv.CsvFileAnalyzerMenu;
+import com.univertext.menu.csv.CsvFileEditorMenu;
+import com.univertext.menu.csv.CsvFileMenu;
+import com.univertext.menu.json.JsonFileMenu;
+import com.univertext.menu.text.TextFileAnalyzerMenu;
+import com.univertext.menu.text.TextFileEditorMenu;
+import com.univertext.menu.text.TextFileMenu;
+import com.univertext.menu.xml.XmlFileMenu;
 
 public class MenuFactory {
     public static FileMenuInterface createTextFileMenu() {

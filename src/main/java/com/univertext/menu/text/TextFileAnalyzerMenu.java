@@ -1,10 +1,11 @@
-package com.univertext.menu.text_file_menu;
+package com.univertext.menu.text;
 
 import com.univertext.analyzer.TextFileAnalyzer;
 import com.univertext.menu.FileMenuInterface;
 import com.univertext.model.FileContent;
 import com.univertext.printer.ConsolePrinter;
 
+import java.util.Map;
 import java.util.Scanner;
 
 public class TextFileAnalyzerMenu implements FileMenuInterface {
@@ -15,8 +16,8 @@ public class TextFileAnalyzerMenu implements FileMenuInterface {
     }
 
     @Override
-    public void displayMenu(Scanner scanner,
-                            FileContent fileContent) {
+    public void launchMenu(Scanner scanner,
+                           FileContent fileContent) {
         do {
             ConsolePrinter.printMenuTitle("\nText Analyze Menu: ");
             ConsolePrinter.printMenu("""
@@ -48,6 +49,11 @@ public class TextFileAnalyzerMenu implements FileMenuInterface {
                 case "3" -> {
                     int countedCharacters = textFileAnalyzer.countCharacters(fileContent);
                     ConsolePrinter.printSuccess("Number of characters: " + countedCharacters);
+                }
+                case "4" -> {
+                    Map<String, Long> wordStatistics = textFileAnalyzer.wordStatistics(fileContent);
+                    wordStatistics.forEach((word, count) -> ConsolePrinter.printSuccess(word + ": " + count));
+
                 }
                 case "16" -> {
                     return;

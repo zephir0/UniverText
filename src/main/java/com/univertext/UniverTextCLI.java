@@ -65,7 +65,7 @@ public class UniverTextCLI {
             Optional<FileContent> fileContent = fileReaders.get(fileType).readFile(path);
             if (fileContent.isPresent()) {
                 ConsolePrinter.printSuccess("File loaded successfully!");
-                fileMenus.get(fileType).displayMenu(scanner, fileContent.get());
+                fileMenus.get(fileType).launchMenu(scanner, fileContent.get());
             } else ConsolePrinter.printError("Failed to load the file. Please check the path and try again.");
         }
     }

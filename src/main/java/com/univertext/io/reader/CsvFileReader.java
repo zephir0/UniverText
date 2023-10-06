@@ -5,6 +5,6 @@ import java.util.List;
 public class CsvFileReader extends AbstractFileReader {
     @Override
     protected List<String> getExpectedFileTypes() {
-        return List.of(".csv,", ".xls", ".xlsx");
+        return List.of(".csv", ".xls", ".xlsx");
     }
 }

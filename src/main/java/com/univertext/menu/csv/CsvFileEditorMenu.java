@@ -1,15 +1,15 @@
-package com.univertext.menu.csv_file_menu;
+package com.univertext.menu.csv;
 
 import com.univertext.editor.CsvFileEditor;
 import com.univertext.io.writer.UniversalFileWriter;
-import com.univertext.menu.FileMenu;
+import com.univertext.menu.FileMenuBase;
 import com.univertext.model.FileContent;
 import com.univertext.model.FileType;
 import com.univertext.printer.ConsolePrinter;
 
 import java.util.Scanner;
 
-public class CsvFileEditorMenu extends FileMenu {
+public class CsvFileEditorMenu extends FileMenuBase {
     private final CsvFileEditor csvFileEditor;
     private final UniversalFileWriter universalFileWriter;
 
@@ -20,8 +20,8 @@ public class CsvFileEditorMenu extends FileMenu {
     }
 
     @Override
-    public void displayMenu(Scanner scanner,
-                            FileContent fileContent) {
+    public void launchMenu(Scanner scanner,
+                           FileContent fileContent) {
         do {
             ConsolePrinter.printMenuTitle("\nCSV Edit Menu: ");
             ConsolePrinter.printMenu("""
@@ -34,10 +34,7 @@ public class CsvFileEditorMenu extends FileMenu {
                 case "3" -> {
                     return;
                 }
-                default -> {
-                    ConsolePrinter.printError("Invalid option. Please try again.");
-                    continue;
-                }
+                default -> ConsolePrinter.printError("Invalid option. Please try again.");
             }
             handleFileSave(scanner, fileContent, universalFileWriter, FileType.CSV);
         } while (true);

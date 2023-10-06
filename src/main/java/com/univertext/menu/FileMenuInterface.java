@@ -5,6 +5,7 @@ import com.univertext.model.FileContent;
 import java.util.Scanner;
 
 public interface FileMenuInterface {
-    void displayMenu(Scanner scanner,
+    void launchMenu(Scanner scanner,
                      FileContent fileContent);
+
 }

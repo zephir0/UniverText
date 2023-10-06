@@ -1,14 +1,15 @@
-package com.univertext.menu;
+package com.univertext.menu.xml;
 
 import com.univertext.converter.XmlToJsonConverter;
 import com.univertext.io.writer.UniversalFileWriter;
+import com.univertext.menu.FileMenuBase;
 import com.univertext.model.FileContent;
 import com.univertext.model.FileType;
 import com.univertext.printer.ConsolePrinter;
 
 import java.util.Scanner;
 
-public class XmlFileMenu extends FileMenu {
+public class XmlFileMenu extends FileMenuBase {
     private final UniversalFileWriter universalFileWriter;
     private final XmlToJsonConverter xmlToJsonConverter;
 
@@ -19,7 +20,7 @@ public class XmlFileMenu extends FileMenu {
     }
 
     @Override
-    public void displayMenu(Scanner scanner,
+    public void launchMenu(Scanner scanner,
                             FileContent fileContent) {
         do {
             ConsolePrinter.printMenuTitle("\nJSON File Menu:");

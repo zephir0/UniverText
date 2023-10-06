@@ -32,8 +32,8 @@ public abstract class AbstractFileReader implements FileReaderInterface {
         try {
             return Optional.of(new FileContent(path, Files.readAllLines(filePath)));
         } catch (IOException e) {
-            e.printStackTrace();
-            return Optional.empty();
+            ConsolePrinter.printError("An error occurred while reading the file: " + e.getMessage());
         }
+        return Optional.empty();
     }
 }

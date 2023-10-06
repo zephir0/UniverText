@@ -1,10 +1,11 @@
-package com.univertext.menu.csv_file_menu;
+package com.univertext.menu.csv;
 
 import com.univertext.analyzer.CsvFileAnalyzer;
 import com.univertext.menu.FileMenuInterface;
 import com.univertext.model.FileContent;
 import com.univertext.printer.ConsolePrinter;
 
+import java.util.Map;
 import java.util.Scanner;
 
 public class CsvFileAnalyzerMenu implements FileMenuInterface {
@@ -15,8 +16,8 @@ public class CsvFileAnalyzerMenu implements FileMenuInterface {
     }
 
     @Override
-    public void displayMenu(Scanner scanner,
-                            FileContent fileContent) {
+    public void launchMenu(Scanner scanner,
+                           FileContent fileContent) {
         do {
             ConsolePrinter.printMenuTitle("\nCSV Analyze Menu: ");
             ConsolePrinter.printMenu("""
@@ -26,11 +27,13 @@ public class CsvFileAnalyzerMenu implements FileMenuInterface {
             switch (scanner.nextLine()) {
                 case "1" -> {
                     int columnIndex = promptForColumnIndex(scanner, fileContent);
-                    csvFileAnalyzer.calculateSum(fileContent, columnIndex);
+                    double calculatedSum = csvFileAnalyzer.calculateSum(fileContent, columnIndex);
+                    ConsolePrinter.printSuccess("Sum of column " + columnIndex + ": " + calculatedSum);
                 }
                 case "2" -> {
                     int columnIndex = promptForColumnIndex(scanner, fileContent);
-                    csvFileAnalyzer.countRepeatingWords(fileContent, columnIndex);
+                    Map<String, Long> countedRepeatingWords = csvFileAnalyzer.countRepeatingWords(fileContent, columnIndex);
+                    countedRepeatingWords.forEach((word, count) -> ConsolePrinter.printSuccess(word + ": " + count));
                 }
                 case "3" -> {
                     return;
@@ -56,7 +59,6 @@ public class CsvFileAnalyzerMenu implements FileMenuInterface {
             }
         }
     }
-
 
     private int getColumnCount(FileContent fileContent) {
         return fileContent.getLines().get(0).split(",").length;

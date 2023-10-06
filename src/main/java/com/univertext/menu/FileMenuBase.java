@@ -7,7 +7,7 @@ import com.univertext.printer.ConsolePrinter;
 
 import java.util.Scanner;
 
-public abstract class FileMenu implements FileMenuInterface {
+public abstract class FileMenuBase implements FileMenuInterface {
     protected void handleFileSave(Scanner scanner,
                                   FileContent fileContent,
                                   UniversalFileWriter universalFileWriter,

@@ -7,8 +7,8 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public class CsvFileAnalyzer {
-    public void calculateSum(FileContent fileContent,
-                             int columnIndex) {
+    public double calculateSum(FileContent fileContent,
+                               int columnIndex) {
         double sum = 0;
         for (String line : fileContent.getLines()) {
             String[] cells = line.split(",");
@@ -18,16 +18,14 @@ public class CsvFileAnalyzer {
                 ConsolePrinter.print(("Skipping non-numeric value: " + cells[columnIndex]));
             }
         }
-        ConsolePrinter.print("Sum of column " + columnIndex + ": " + sum);
+        return sum;
     }
 
-    public void countRepeatingWords(FileContent fileContent,
-                                    int columnIndex) {
-        Map<String, Long> wordCounts = fileContent.getLines().stream()
+    public Map<String, Long> countRepeatingWords(FileContent fileContent,
+                                                 int columnIndex) {
+        return fileContent.getLines().stream()
                 .map(line -> parseCsvLine(line)[columnIndex].trim())
                 .collect(Collectors.groupingBy(String::toLowerCase, Collectors.counting()));
-        ConsolePrinter.print("Word counts in column " + columnIndex + ":");
-        wordCounts.forEach((word, count) -> ConsolePrinter.print(word + ": " + count));
     }
 
     private String[] parseCsvLine(String line) {

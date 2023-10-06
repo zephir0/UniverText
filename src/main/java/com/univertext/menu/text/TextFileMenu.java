@@ -1,16 +1,15 @@
-package com.univertext.menu;
+package com.univertext.menu.text;
 
 import com.univertext.converter.TextToCsvConverter;
 import com.univertext.io.writer.UniversalFileWriter;
-import com.univertext.menu.text_file_menu.TextFileAnalyzerMenu;
-import com.univertext.menu.text_file_menu.TextFileEditorMenu;
+import com.univertext.menu.FileMenuBase;
 import com.univertext.model.FileContent;
 import com.univertext.model.FileType;
 import com.univertext.printer.ConsolePrinter;
 
 import java.util.Scanner;
 
-public class TextFileMenu extends FileMenu {
+public class TextFileMenu extends FileMenuBase {
     private final UniversalFileWriter universalFileWriter;
     private final TextFileAnalyzerMenu textFileAnalyzerMenu;
     private final TextFileEditorMenu textFileEditorMenu;
@@ -28,7 +27,7 @@ public class TextFileMenu extends FileMenu {
     }
 
     @Override
-    public void displayMenu(Scanner scanner,
+    public void launchMenu(Scanner scanner,
                             FileContent fileContent) {
         do {
             ConsolePrinter.printMenuTitle("\nText File Menu: ");
@@ -40,8 +39,8 @@ public class TextFileMenu extends FileMenu {
                     5. Go back""");
             switch (scanner.nextLine()) {
                 case "1" -> displayContent(fileContent);
-                case "2" -> textFileEditorMenu.displayMenu(scanner, fileContent);
-                case "3" -> textFileAnalyzerMenu.displayMenu(scanner, fileContent);
+                case "2" -> textFileEditorMenu.launchMenu(scanner, fileContent);
+                case "3" -> textFileAnalyzerMenu.launchMenu(scanner, fileContent);
                 case "4" -> {
                     FileContent convertedFile = textToCsvConverter.convert(fileContent);
                     handleFileSave(scanner, convertedFile, universalFileWriter, FileType.CSV);
