@@ -26,7 +26,7 @@ public class AbstractFileReaderTest {
     }
 
     @Test
-    public void testReadFile_ValidFile() throws Exception {
+    public void readFileValidFileTest() throws Exception {
         Path file = Files.createFile(tempDir.resolve("test.txt"));
         Files.write(file, Arrays.asList("Line 1", "Line 2"));
 
@@ -37,7 +37,7 @@ public class AbstractFileReaderTest {
     }
 
     @Test
-    public void testReadFile_InvalidFileType() throws Exception {
+    public void readFileInvalidFileTypeTest() throws Exception {
         Path file = Files.createFile(tempDir.resolve("test.json"));
         Files.write(file, Arrays.asList("Line 1", "Line 2"));
 
@@ -47,14 +47,14 @@ public class AbstractFileReaderTest {
     }
 
     @Test
-    public void testReadFile_FileDoesNotExist() {
+    public void readFileFileDoesNotExistTest() {
         Optional<FileContent> content = reader.readFile(tempDir.resolve("nonexistent.txt").toString());
 
         assertFalse(content.isPresent());
     }
 
     @Test
-    public void testReadFile_PathIsDirectory() {
+    public void readFilePathIsDirectoryTest() {
         Optional<FileContent> content = reader.readFile(tempDir.toString());
 
         assertFalse(content.isPresent());

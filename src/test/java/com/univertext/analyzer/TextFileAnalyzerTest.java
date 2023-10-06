@@ -21,7 +21,7 @@ public class TextFileAnalyzerTest {
     }
 
     @Test
-    public void testCountLines() {
+    public void countLinesTest() {
         mockFileContent = mock(FileContent.class);
         when(mockFileContent.getLines()).thenReturn(Arrays.asList("Hello world", "Test test", "It's a sunny day"));
 
@@ -31,7 +31,7 @@ public class TextFileAnalyzerTest {
     }
 
     @Test
-    public void testCountWords() {
+    public void countWordsTest() {
         mockFileContent = mock(FileContent.class);
         when(mockFileContent.getLines()).thenReturn(Arrays.asList("Hello world", "Test test", "It's a sunny day"));
 
@@ -41,7 +41,7 @@ public class TextFileAnalyzerTest {
     }
 
     @Test
-    public void testCountCharacters() {
+    public void countCharactersTest() {
         mockFileContent = mock(FileContent.class);
         when(mockFileContent.getLines()).thenReturn(Arrays.asList("Hello world", "Test test", "It's a sunny day"));
 
@@ -51,7 +51,7 @@ public class TextFileAnalyzerTest {
     }
 
     @Test
-    public void testWordStatistics() {
+    public void wordStatisticsTest() {
         mockFileContent = mock(FileContent.class);
         when(mockFileContent.getLines()).thenReturn(Arrays.asList("Hello world", "Test test"));
 

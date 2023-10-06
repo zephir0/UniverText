@@ -23,7 +23,7 @@ public class CsvFileAnalyzerTest {
     }
 
     @Test
-    public void testCalculateSum() {
+    public void calculateSumTest() {
         when(mockFileContent.getLines()).thenReturn(List.of("1.5,2.5", "3.5,4.5", "notANumber,5.5"));
 
         double result = csvFileAnalyzer.calculateSum(mockFileContent, 1);
@@ -32,7 +32,7 @@ public class CsvFileAnalyzerTest {
     }
 
     @Test
-    public void testCountRepeatingWords() {
+    public void countRepeatingWordsTest() {
         when(mockFileContent.getLines()).thenReturn(List.of("apple,orange", "APPLE,banana", "apple,grape"));
 
         Map<String, Long> result = csvFileAnalyzer.countRepeatingWords(mockFileContent, 0);

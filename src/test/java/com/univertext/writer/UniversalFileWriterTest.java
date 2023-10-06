@@ -39,7 +39,7 @@ public class UniversalFileWriterTest {
     }
 
     @Test
-    public void testWriteFileSuccess() throws IOException {
+    public void writeFileSuccessTest() throws IOException {
         FileContent content = new FileContent("success/directory/example.json", List.of("Hello", "World"));
         when(mockProvider.get(anyString())).thenReturn(mock(OutputStream.class));
 
@@ -50,7 +50,7 @@ public class UniversalFileWriterTest {
 
 
     @Test
-    public void testConsolePrinterIsInvokedOnSuccess() throws IOException {
+    public void consolePrinterIsInvokedOnSuccessTest() throws IOException {
         FileContent content = new FileContent("/success/directory/example.json", List.of("{\"key\":\"value\"}"));
 
         when(mockProvider.get(anyString())).thenReturn(mock(OutputStream.class));
@@ -62,7 +62,7 @@ public class UniversalFileWriterTest {
     }
 
     @Test
-    public void testConsolePrinterIsInvokedOnError() throws IOException {
+    public void consolePrinterIsInvokedOnErrorTest() throws IOException {
         FileContent content = new FileContent("/nonexistent/directory/example.json", List.of("{\"key\":\"value\"}"));
         when(mockProvider.get(anyString())).thenThrow(new IOException("Test exception"));
 
